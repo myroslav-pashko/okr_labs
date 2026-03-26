@@ -1,5 +1,5 @@
-
 body {
+    position: relative;
     font-family: Arial, sans-serif;
     font-size: 17px;
     line-height: 1.6;
@@ -8,8 +8,9 @@ body {
     padding: 10px;
 }
 
-
 .main-title {
+    position: relative;
+    top: 5px;
     font-size: 34px;
     color: #1f3c88;
     font-style: normal;
@@ -19,11 +20,18 @@ body {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.10);
 }
 
+.main-title::before {
+    content: "★ ";
+    color: darkorange;
+}
 
+.main-title::after {
+    content: " ★";
+    color: darkorange;
+}
 #coach {
     color: #0b5d3b;
 }
-
 
 .home-page {
     background-color: lightgray;
@@ -41,13 +49,19 @@ body {
     background-color: white;
 }
 
-
 a {
-    color: #0b57d0;
     text-decoration: none;
     font-weight: bold;
     padding: 2px 4px;
     transition: 0.2s;
+}
+
+a:link {
+    color: #0b57d0;
+}
+
+a:visited {
+    color: #10ad2a;
 }
 
 a:hover {
@@ -55,6 +69,9 @@ a:hover {
     color: #003c8f;
 }
 
+a:active {
+    color: red;
+}
 
 #top {
     border-bottom: 2px solid #666;
@@ -65,11 +82,11 @@ p {
     margin: 10px 0;
 }
 
-
 .important {
     font-weight: bold;
     color: red !important;
 }
+
 #important {
     font-weight: bold;
     color: rgb(0, 255, 17) !important;
@@ -82,12 +99,19 @@ p {
     background-color: rgba(255,255,255,0.35);
     border-radius: 6px;
 }
-#nav-links {
-    margin: 12px 0 18px 0;
-    padding: 8px 10px;
-    border: 1px solid #bdbdbd;
-    background-color: rgba(255,255,255,0.35);
-    border-radius: 6px;
+
+.nav-links > a {
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.nav-links a {
+    font-size: 16px;
+}
+
+.nav-links a:first-child {
+    border: 2px solid #1f3c88;
+    background-color: #eef4ff;
 }
 
 img {
@@ -97,6 +121,11 @@ img {
     border-radius: 6px;
 }
 
+.about-page img {
+    width: 220px;
+    float: right;
+    margin: 0 0 10px 15px;
+}
 
 ul {
     list-style-type: square;
@@ -132,7 +161,6 @@ dd {
     color: #444;
 }
 
-
 table {
     border-collapse: collapse;
     margin-top: 20px;
@@ -163,22 +191,23 @@ caption {
     font-weight: bold;
     margin-bottom: 8px;
 }
-.nav-links > a {
-    padding: 4px 6px;
-    border-radius: 4px;
-    
-}
 
 .services-table {
     width: 100%;
     max-width: 900px;
 }
 
-
 .workout-table {
     width: 100%;
 }
 
+.workouts-page table {
+    border: 2px solid #444;
+}
+
+table td {
+    font-size: 15px;
+}
 
 iframe {
     border: 1px solid #444;
@@ -186,12 +215,13 @@ iframe {
     background-color: white;
 }
 
-
 .author {
+    position: absolute;
+    top: 20px;
+    right: 30px;
     font-style: italic;
     color: #444;
 }
-
 
 .inline-note {
     background-color: #fff3cd;
@@ -199,41 +229,26 @@ iframe {
     border-left: 4px solid #d39e00;
     border-radius: 4px;
 }
-.nav-links a {
-    font-size: 16px;
+
+.inline-note::before {
+    content: "Note: ";
+    font-weight: bold;
 }
 
+.inline-note::after {
+    content: " ✔";
+    color: green;
+}
 
 .about-page p {
     line-height: 1.8;
 }
 
-
-
-
-
-
-table > tr > td {
-    font-size: 15px;
+.contacts-page p {
+    font-size: 17px;
 }
-
-
 
 h1 + p {
     margin-top: 5px;
     color: #555;
-}
-
-.about-page img {
-    width: 220px;
-}
-
-
-.workouts-page table {
-    border: 2px solid #444;
-}
-
-
-.contacts-page p {
-    font-size: 17px;
 }
