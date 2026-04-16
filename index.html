@@ -6,10 +6,146 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
+  .membership-banner {
+    position: relative;
+    background: linear-gradient(135deg, #1f3c88, #2e5cb8);
+    color: white;
+    border-radius: 12px;
+    padding: 28px 24px;
+    margin: 28px 0;
+  }
+  .membership-banner h2 { margin-top: 0; color: white; }
+  .membership-banner p { color: #dce8ff; margin: 8px 0; }
+
+  .btn-primary {
+    display: inline-block;
+    margin: 8px 8px 0 0;
+    padding: 10px 22px;
+    background-color: darkorange;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background-color: #c75000; }
+
+  .btn-secondary {
+    display: inline-block;
+    margin: 8px 8px 0 0;
+    padding: 10px 22px;
+    background-color: white;
+    color: #1f3c88;
+    border: 2px solid #1f3c88;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  .btn-secondary:hover { background-color: #eef4ff; }
+
+  #welcome-message {
+    display: none;
+    margin-top: 16px;
+    padding: 12px 16px;
+    background-color: rgba(255,255,255,0.15);
+    border-left: 4px solid darkorange;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+  }
+
+  .quiz-section {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .quiz-section h2 { color: #1f3c88; margin-top: 0; }
+
+  #quiz-result {
+    display: none;
+    margin-top: 16px;
+    padding: 14px 18px;
+    background-color: #eef4ff;
+    border-radius: 8px;
+    border-left: 4px solid #1f3c88;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  #compare-result {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #0b5d3b;
+    font-size: 15px;
+  }
+
+  .team-section { margin: 28px 0; }
+  .team-section h2 { color: #1f3c88; }
+  #team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+  }
+  .trainer-card {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 16px 20px;
+    width: 200px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    font-size: 15px;
+  }
+  .trainer-card strong { color: #1f3c88; display: block; margin-bottom: 4px; }
+  .trainer-card span { color: #555; font-size: 13px; }
+
+  .news-section { margin: 28px 0; }
+  .news-section h2 { color: #1f3c88; }
+  #news-container { margin-top: 10px; }
+  .news-item {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  .news-item strong { color: #1f3c88; }
+
+  #night-bar {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #1f3c88;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+    border-bottom: 2px solid darkorange;
+  }
+
+  #dev-footer {
+    margin-top: 30px;
+    padding: 10px 16px;
+    background: #f0f0f0;
+    border-top: 1px solid #ccc;
+    font-size: 13px;
+    color: #555;
+    font-style: italic;
+  }
 </style>
 </head>
 
-<body class="home-page" link="blue" vlink="purple" alink="red">
+<body class="home-page">
+
+<div id="night-bar">🌙 Нічний режим активний. Автоматично вимкнеться через 30 секунд.</div>
 
 <h1 id="top" class="main-title">Fitness Club</h1>
 <p class="author"><b>Author:</b> <a href="#complex-table">Miroslav</a></p>
@@ -25,22 +161,27 @@
 <p style="color:#333366; font-size:18px; text-align:justify;">
     Welcome to Fitness Club, a friendly place where people of all ages can improve their health, strength, and confidence.
 </p>
-
 <p>
     We offer a supportive environment, professional coaching, and training options for beginners as well as experienced members.
 </p>
-
 <p>
     Our goal is to help you stay active, build healthy habits, and enjoy the process of becoming stronger every day.
 </p>
 
-<a href="#table">Go to table</a>
-
-<br><br>
+<a href="#table">Go to table</a><br><br>
 
 <a href="images/gym.jpg" target="_blank">
     <img src="images/gym.jpg" width="200" height="150" alt="Gym">
 </a>
+
+
+<div class="membership-banner">
+  <h2>🏋️ Готові розпочати?</h2>
+  <p>Запишіться на перше безкоштовне тренування. Тренер підбере програму особисто для вас.</p>
+  <button class="btn-primary" onclick="userDialog()">Записатися на тренування</button>
+  <button class="btn-secondary" style="color:white; border-color:white;" onclick="toggleNightMode()">🌙 Нічний режим</button>
+  <div id="welcome-message"></div>
+</div>
 
 <h2>Why Choose Us</h2>
 <ul>
@@ -49,27 +190,25 @@
     <li>Comfortable atmosphere for every fitness level</li>
 </ul>
 
+
+<div class="quiz-section">
+  <h2>📋 Підберіть програму тренувань</h2>
+  <p>Пройдіть короткий тест і дізнайтеся, який план підходить саме вам.</p>
+  <button class="btn-primary" onclick="runFitnessTest()">Пройти тест</button>
+  <button class="btn-secondary" onclick="comparePrograms()">Порівняти дві програми</button>
+  <div id="quiz-result"></div>
+  <div id="compare-result"></div>
+</div>
+
 <h2>Training Zones</h2>
-
 <div class="zones-section">
-    <div class="zone-box static-zone">
-        Cardio Zone
-    </div>
-
-    <div class="zone-box relative-zone">
-        Strength Zone
-    </div>
-
+    <div class="zone-box static-zone">Cardio Zone</div>
+    <div class="zone-box relative-zone">Strength Zone</div>
     <div class="absolute-area">
-        <div class="zone-box absolute-zone">
-            VIP Coaching
-        </div>
+        <div class="zone-box absolute-zone">VIP Coaching</div>
         <p>Personal area for one-to-one training sessions.</p>
     </div>
-
-    <div class="zone-box sticky-zone">
-        Stretching Zone
-    </div>
+    <div class="zone-box sticky-zone">Stretching Zone</div>
 </div>
 
 <ol type="A">
@@ -83,29 +222,32 @@
     <dd>Individual support and training plans based on your goals</dd>
 </dl>
 
+
+<div class="team-section">
+  <h2>👥 Наша команда тренерів</h2>
+  <p>Познайомтеся зі спеціалістами, які допоможуть вам досягти результату.</p>
+  <button class="btn-primary" onclick="loadTrainers()">Показати тренерів</button>
+  <button class="btn-secondary" onclick="removeLastTrainer()">Видалити останнього</button>
+  <div id="team-container"></div>
+</div>
+
 <h2 id="table">Main Features</h2>
 <table border="1" cellpadding="5" cellspacing="3">
 <tr bgcolor="yellow">
-    <th>Image</th>
-    <th>Link</th>
-    <th>Text</th>
-    <th>Info</th>
+    <th>Image</th><th>Link</th><th>Text</th><th>Info</th>
 </tr>
-
 <tr>
     <td><img src="images/gym.jpg" width="50" height="50" alt="Gym small"></td>
     <td><img src="images/gym.jpg" width="50" height="50" alt="Gym small"></td>
     <td><img src="images/gym.jpg" width="50" height="50" alt="Gym small"></td>
     <td><img src="images/gym.jpg" width="50" height="50" alt="Gym small"></td>
 </tr>
-
 <tr>
     <td><a href="about.html#coach">Our Coach</a></td>
     <td><a href="workouts.html#plan">Workout Plan</a></td>
     <td><a href="#top">Back to Top</a></td>
     <td><a href="https://google.com" target="_blank">Search More</a></td>
 </tr>
-
 <tr>
     <td>Professional Trainers</td>
     <td>Structured Programs</td>
@@ -120,25 +262,171 @@
     <col style="background-color:pink">
     <col style="background-color:lightblue">
 </colgroup>
-
-<tr>
-    <th colspan="2">Day</th>
-</tr>
-
+<tr><th colspan="2">Day</th></tr>
 <tr>
     <td rowspan="2">Monday</td>
     <td>Strength Workout</td>
 </tr>
-
-<tr>
-    <td>Recovery and Stretching</td>
-</tr>
+<tr><td>Recovery and Stretching</td></tr>
 </table>
 
+
+<div class="news-section">
+  <h2>📰 Новини клубу</h2>
+  <p>Актуальні події, акції та оновлення Fitness Club.</p>
+  <button class="btn-primary" onclick="loadNews()">Оновити новини</button>
+  <button class="btn-secondary" onclick="goToContacts()">Зв'язатися з нами →</button>
+  <div id="news-container"></div>
+</div>
+
 <iframe src="https://en.wikipedia.org/wiki/Fitness"
-style="position:fixed; right:10px; bottom:10px; width:250px; height:150px;">
-</iframe>
+  style="position:fixed; right:10px; bottom:10px; width:250px; height:150px;"></iframe>
+
+<div id="dev-footer"></div>
 
 <a href="">About</a> |
+
+<script src="scripts.js"></script>
+<script>
+ 
+  window.addEventListener("DOMContentLoaded", function () {
+    showDevInfo("Пашко", "Мирослав");
+    loadNews();
+  });
+
+  
+  function toggleNightMode() {
+    if (!confirm("Увімкнути нічний режим на 30 секунд?")) return;
+    let originalBg = document.body.style.backgroundColor;
+    let originalColor = document.body.style.color;
+    document.body.style.backgroundColor = "#1a1a2e";
+    document.body.style.color = "#e0e0e0";
+    document.getElementById("night-bar").style.display = "block";
+    setTimeout(function () {
+      document.body.style.backgroundColor = originalBg;
+      document.body.style.color = originalColor;
+      document.getElementById("night-bar").style.display = "none";
+    }, 30000);
+  }
+
+  
+  function runFitnessTest() {
+    let level = prompt("Ваш рівень підготовки:\n1 — початківець\n2 — середній\n3 — досвідчений\n\nВведіть цифру:");
+    if (!level) return;
+    let zones = document.querySelectorAll(".zone-box");
+    let plans = {
+      "1": { title: "Програма для початківців", desc: "Кардіо 3×/тиждень, базові вправи, відновлення." },
+      "2": { title: "Програма середнього рівня", desc: "Силові тренування 4×/тиждень + кардіо-інтервали." },
+      "3": { title: "Програма для досвідчених",  desc: "Спліт-тренування 5×/тиждень, прогресивне навантаження." }
+    };
+    let plan = plans[level.trim()] || { title: "Індивідуальна програма", desc: "Зверніться до тренера." };
+    let result = document.getElementById("quiz-result");
+    result.innerHTML =
+      "<strong>" + plan.title + "</strong><br>" + plan.desc +
+      "<br><small style='color:#888;'>На сайті доступно " + zones.length +
+      " тренувальних зон. Перша зона: <em>" + zones[0].textContent.trim() + "</em></small>";
+    result.style.display = "block";
+  }
+
+  
+  function comparePrograms() {
+    let str1 = prompt("Введіть назву першої програми:");
+    if (str1 === null) return;
+    let str2 = prompt("Введіть назву другої програми:");
+    if (str2 === null) return;
+    let resultEl = document.getElementById("compare-result");
+    if (str1 > str2) {
+      alert("Програма з вищим пріоритетом: \"" + str1 + "\"");
+      resultEl.textContent = "Рекомендовано: " + str1;
+    } else if (str2 > str1) {
+      alert("Програма з вищим пріоритетом: \"" + str2 + "\"");
+      resultEl.textContent = "Рекомендовано: " + str2;
+    } else {
+      alert("Програми рівноцінні: \"" + str1 + "\"");
+      resultEl.textContent = "Обидві програми рівноцінні.";
+    }
+  }
+
+  
+  let trainerNodes = [];
+  let trainersLoaded = false;
+
+  function loadTrainers() {
+    let container = document.getElementById("team-container");
+    let trainers = [
+      { name: "Олена Ковальчук", role: "Тренер з йоги" },
+      { name: "Дмитро Бондар",   role: "Силовий тренер" },
+      { name: "Ірина Мельник",   role: "Тренер з кардіо" }
+    ];
+
+    if (!trainersLoaded) {
+      
+      let label = document.createElement("p");
+      label.style.cssText = "font-weight:bold;color:#555;font-size:13px;margin:0 0 8px;width:100%;";
+      label.append(document.createTextNode("Актуальний склад команди:"));
+      container.prepend(label);
+      trainerNodes.unshift(label);
+      trainersLoaded = true;
+    } else {
+      
+      let newLabel = document.createElement("p");
+      newLabel.style.cssText = "font-weight:bold;color:#555;font-size:13px;margin:0 0 8px;width:100%;";
+      newLabel.textContent = "Оновлено: " + new Date().toLocaleTimeString();
+      trainerNodes[0].replaceWith(newLabel);
+      trainerNodes[0] = newLabel;
+    }
+
+    trainers.forEach(function (t, i) {
+      let card = document.createElement("div");
+      card.className = "trainer-card";
+      let name = document.createElement("strong");
+      name.append(document.createTextNode(t.name));
+      let role = document.createElement("span");
+      role.append(document.createTextNode(t.role));
+      card.append(name, role);
+
+      
+      if (i === 0) {
+        trainerNodes[0].after(card);
+      } else {
+        container.append(card);
+      }
+      trainerNodes.push(card);
+    });
+  }
+
+  function removeLastTrainer() {
+    let cards = trainerNodes.filter(n => n.className === "trainer-card");
+    if (cards.length > 0) {
+      let last = cards[cards.length - 1];
+      last.remove();
+      trainerNodes = trainerNodes.filter(n => n !== last);
+    } else {
+      alert("Тренерів більше немає у списку.");
+    }
+  }
+
+  
+  function loadNews() {
+    let news = [
+      { date: "16 квітня", text: "Нова група з функціонального тренінгу — старт у понеділок!" },
+      { date: "14 квітня", text: "Весняна акція: місяць занять за ціною двох тижнів." },
+      { date: "10 квітня", text: "Оновлено тренажерний зал — нові кардіо-машини вже доступні." }
+    ];
+    let container = document.getElementById("news-container");
+    container.innerHTML = "";
+    news.forEach(function (item) {
+      let el = document.createElement("div");
+      el.className = "news-item";
+      el.innerHTML = "<strong>" + item.date + "</strong> — " + item.text;
+      container.append(el);
+    });
+  }
+
+  
+  function goToContacts() {
+    location.href = "contacts.html";
+  }
+</script>
 </body>
 </html>
