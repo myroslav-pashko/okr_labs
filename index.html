@@ -140,6 +140,168 @@
     color: #555;
     font-style: italic;
   }
+
+  .cabinet-section {
+    background: linear-gradient(135deg, #ffffff, #eef4ff);
+    border: 1px solid #c5d3ed;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .cabinet-section h2 { color: #1f3c88; margin-top: 0; }
+  .cabinet-section h3 {
+    color: #1f3c88;
+    margin: 20px 0 8px;
+    font-size: 17px;
+    border-bottom: 1px dashed #b6c5e2;
+    padding-bottom: 4px;
+  }
+  .cabinet-actions { margin-bottom: 10px; }
+
+  .journal-log {
+    margin-top: 10px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  .journal-entry {
+    padding: 6px 8px;
+    border-bottom: 1px solid #eee;
+    line-height: 1.5;
+  }
+  .journal-entry:first-child { background-color: #fff8dc; }
+  .journal-time {
+    color: #888;
+    font-family: Consolas, monospace;
+    font-size: 12px;
+    margin-right: 6px;
+  }
+  .journal-source {
+    display: inline-block;
+    background-color: #1f3c88;
+    color: white;
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    margin-right: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .plan-section {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .plan-section h2 { color: #1f3c88; margin-top: 0; }
+  .plan-section h3 {
+    color: #1f3c88;
+    margin: 20px 0 8px;
+    font-size: 17px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 4px;
+  }
+
+  .exercise-list {
+    list-style: none;
+    padding: 8px;
+    margin: 10px 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: fit-content;
+    min-width: 320px;
+  }
+  .exercise-list li {
+    cursor: pointer;
+    padding: 8px 14px;
+    margin: 4px 0;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: 0.2s;
+    user-select: none;
+    position: relative;
+    padding-left: 32px;
+  }
+  .exercise-list li::before {
+    content: "☐";
+    position: absolute;
+    left: 12px;
+    color: #999;
+    font-size: 16px;
+  }
+  .exercise-list li:hover {
+    background-color: #eef4ff;
+    border-color: #c5d3ed;
+  }
+  .exercise-list li.selected {
+    background-color: #fff3cd;
+    border-color: #d39e00;
+    color: #7a5400;
+    font-weight: bold;
+  }
+  .exercise-list li.selected::before {
+    content: "✔";
+    color: #0b5d3b;
+  }
+
+  .tools-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .tools-menu button {
+    padding: 9px 16px;
+    background-color: white;
+    color: #1f3c88;
+    border: 2px solid #1f3c88;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  .tools-menu button:hover {
+    background-color: #1f3c88;
+    color: white;
+  }
+  .tools-menu button[data-action="clear"] {
+    border-color: #b04545;
+    color: #b04545;
+  }
+  .tools-menu button[data-action="clear"]:hover {
+    background-color: #b04545;
+    color: white;
+  }
+
+  .tools-log {
+    margin-top: 10px;
+    max-height: 240px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  .tool-entry {
+    padding: 6px 8px;
+    border-bottom: 1px solid #eee;
+  }
+  .tool-entry:first-child { background-color: #fff8dc; }
+  .tool-time {
+    color: #888;
+    font-family: Consolas, monospace;
+    font-size: 12px;
+    margin-right: 6px;
+  }
 </style>
 </head>
 
@@ -191,6 +353,43 @@
 </ul>
 
 
+
+<div class="cabinet-section">
+  <h2>📔 Особистий кабінет члена клубу</h2>
+  <p>Швидкі дії для постійних відвідувачів: відмічайтеся на вході, ведіть журнал тренувань і отримуйте поради від AI-тренера.</p>
+
+  <div class="cabinet-actions">
+
+    <button id="btn-checkin" class="btn-primary" onclick="handleCheckIn(event)">
+      📍 Відмітити прихід
+    </button>
+
+   
+    <button id="btn-favorite-zone" class="btn-primary">
+      ⭐ Зберегти улюблену зону
+    </button>
+\
+    <button id="btn-finish-workout" class="btn-primary">
+      🔥 Завершити тренування
+    </button>
+
+    
+    <button id="btn-ai-trainer" class="btn-primary">
+      🤖 Запитати AI-тренера
+    </button>
+
+    <button id="btn-end-session" class="btn-secondary">
+      ❌ Завершити сесію з тренером
+    </button>
+  </div>
+
+  <h3>Журнал активності</h3>
+  <div id="cabinet-log" class="journal-log">
+    <em style="color:#888;">Тут зʼявлятимуться ваші відвідування, тренування та поради тренера…</em>
+  </div>
+</div>
+
+
 <div class="quiz-section">
   <h2>📋 Підберіть програму тренувань</h2>
   <p>Пройдіть короткий тест і дізнайтеся, який план підходить саме вам.</p>
@@ -210,6 +409,38 @@
     </div>
     <div class="zone-box sticky-zone">Stretching Zone</div>
 </div>
+
+
+
+<div class="plan-section">
+  <h2>🎯 План тренування на сьогодні</h2>
+  <p>Натисніть на вправу, щоб додати її до сьогоднішнього плану. Натисніть ще раз, щоб прибрати.</p>
+
+  <ul id="exercise-list" class="exercise-list">
+    <li>Жим лежачи — 60 кг × 4 підходи</li>
+    <li>Присідання зі штангою — 80 кг × 4 підходи</li>
+    <li>Станова тяга — 100 кг × 3 підходи</li>
+    <li>Підтягування на турніку — 10 повт. × 4 підходи</li>
+    <li>Кардіо на біговій доріжці — 30 хв</li>
+    <li>Розтяжка та мобільність — 15 хв</li>
+  </ul>
+
+  <h3>🛠 Швидкі інструменти</h3>
+  <p>Скористайтеся фітнес-калькуляторами та порадами в один клік.</p>
+
+  <div id="tools-menu" class="tools-menu">
+    <button data-action="bmi">🧮 Розрахувати BMI</button>
+    <button data-action="nutrition">🍎 Порада з харчування</button>
+    <button data-action="water">💧 Нагадування про воду</button>
+    <button data-action="count">📊 Підрахувати вибране</button>
+    <button data-action="clear">🗑 Очистити журнал</button>
+  </div>
+
+  <div id="tools-log" class="tools-log">
+    <em style="color:#888;">Тут зʼявлятимуться результати розрахунків та поради…</em>
+  </div>
+</div>
+
 
 <ol type="A">
     <li>Join the club</li>
@@ -288,13 +519,17 @@
 
 <script src="scripts.js"></script>
 <script>
- 
+
   window.addEventListener("DOMContentLoaded", function () {
     showDevInfo("Пашко", "Мирослав");
     loadNews();
+    let oldTitle = document.querySelector("h2#table");
+    let newTitle = document.createElement("h2");
+    newTitle.textContext = "1 1 1";
+    oldTitle.replaceWith(newTitle);
   });
 
-  
+
   function toggleNightMode() {
     if (!confirm("Увімкнути нічний режим на 30 секунд?")) return;
     let originalBg = document.body.style.backgroundColor;
@@ -309,7 +544,7 @@
     }, 30000);
   }
 
-  
+
   function runFitnessTest() {
     let level = prompt("Ваш рівень підготовки:\n1 — початківець\n2 — середній\n3 — досвідчений\n\nВведіть цифру:");
     if (!level) return;
@@ -328,7 +563,7 @@
     result.style.display = "block";
   }
 
-  
+
   function comparePrograms() {
     let str1 = prompt("Введіть назву першої програми:");
     if (str1 === null) return;
@@ -347,7 +582,7 @@
     }
   }
 
-  
+
   let trainerNodes = [];
   let trainersLoaded = false;
 
@@ -360,7 +595,7 @@
     ];
 
     if (!trainersLoaded) {
-      
+
       let label = document.createElement("p");
       label.style.cssText = "font-weight:bold;color:#555;font-size:13px;margin:0 0 8px;width:100%;";
       label.append(document.createTextNode("Актуальний склад команди:"));
@@ -368,7 +603,7 @@
       trainerNodes.unshift(label);
       trainersLoaded = true;
     } else {
-      
+
       let newLabel = document.createElement("p");
       newLabel.style.cssText = "font-weight:bold;color:#555;font-size:13px;margin:0 0 8px;width:100%;";
       newLabel.textContent = "Оновлено: " + new Date().toLocaleTimeString();
@@ -385,7 +620,7 @@
       role.append(document.createTextNode(t.role));
       card.append(name, role);
 
-      
+
       if (i === 0) {
         trainerNodes[0].after(card);
       } else {
@@ -406,13 +641,13 @@
     }
   }
 
-  
+
   function loadNews() {
     let news = [
       { date: "16 квітня", text: "Нова група з функціонального тренінгу — старт у понеділок!" },
       { date: "14 квітня", text: "Весняна акція: місяць занять за ціною двох тижнів." },
       { date: "10 квітня", text: "Оновлено тренажерний зал — нові кардіо-машини вже доступні." }
-    ];
+      ];
     let container = document.getElementById("news-container");
     container.innerHTML = "";
     news.forEach(function (item) {
@@ -423,10 +658,201 @@
     });
   }
 
-  
+
   function goToContacts() {
     location.href = "contacts.html";
   }
+
+
+  
+  function logCabinet(message, source) {
+    let log = document.getElementById("cabinet-log");
+    if (!log) return;
+    if (log.querySelector("em")) log.innerHTML = "";
+    let entry = document.createElement("div");
+    entry.className = "journal-entry";
+    entry.innerHTML =
+      "<span class='journal-time'>" + new Date().toLocaleTimeString() + "</span>" +
+      "<span class='journal-source'>" + source + "</span>" + message;
+    log.prepend(entry);
+  }
+
+
+  function handleCheckIn(event) {
+    let zones = ["Кардіо-зона", "Силова зона", "VIP-коучинг", "Зона розтяжки"];
+    let zone = zones[Math.floor(Math.random() * zones.length)];
+    logCabinet(
+      "Ви відмітилися на вході. Рекомендована зона сьогодні: <strong>" + zone + "</strong>.",
+      "відвідування"
+    );
+  }
+
+  function handleFavoriteZone(event) {
+    let saved = ["Силова зона", "VIP-коучинг", "Кардіо-зона"];
+    let pick = saved[Math.floor(Math.random() * saved.length)];
+    logCabinet(
+      "Ваша улюблена зона збережена в профілі: <strong>" + pick + "</strong>.",
+      "налаштування"
+    );
+  }
+  document.getElementById("btn-favorite-zone").onclick = handleFavoriteZone;
+
+  
+  function workoutCounter(event) {
+    workoutCounter.count = (workoutCounter.count || 0) + 1;
+    logCabinet(
+      "Завершено тренувань загалом: <strong>" + workoutCounter.count + "</strong>.",
+      "статистика"
+    );
+  }
+  function workoutTimer(event) {
+    let duration = Math.floor(Math.random() * 50) + 30;
+    let calories  = Math.round(duration * 7.5);
+    logCabinet(
+      "Тривалість сесії: ~<strong>" + duration + " хв</strong>, спалено ~<strong>" +
+      calories + " ккал</strong>.",
+      "час"
+    );
+  }
+  function workoutAnimation(event) {
+    let btn = event.currentTarget;
+    let originalBg   = btn.style.backgroundColor;
+    let originalText = btn.textContent;
+    btn.style.backgroundColor = "#0b5d3b";
+    btn.textContent = "✅ Зараховано!";
+    setTimeout(function () {
+      btn.style.backgroundColor = originalBg;
+      btn.textContent = originalText;
+    }, 1000);
+  }
+  let finishBtn = document.getElementById("btn-finish-workout");
+  finishBtn.addEventListener("click", workoutCounter);
+  finishBtn.addEventListener("click", workoutTimer);
+  finishBtn.addEventListener("click", workoutAnimation);
+
+
+  let aiTrainer = {
+    questionCount: 0,
+    tips: [
+      "Розминка 5–10 хв перед силовими знижує ризик травм.",
+      "Пийте воду між підходами — це підтримує продуктивність.",
+      "Сон 7–9 годин важливіший за зайве тренування.",
+      "Прогресуйте поступово: +2.5 кг або +1 повтор на тиждень.",
+      "Обовʼязково розтягуйтеся після силових — мʼязи будуть еластичнішими.",
+      "Контролюйте техніку — краще менша вага з ідеальною формою.",
+      "Білок 1.6–2 г на кг ваги на день для росту мʼязів."
+    ],
+    handleEvent: function (event) {
+      this.questionCount++;
+      let el = event.currentTarget;
+      let tip = this.tips[Math.floor(Math.random() * this.tips.length)];
+      logCabinet(
+        "Запит №" + this.questionCount + " від кнопки &lt;" +
+        el.tagName.toLowerCase() + " id=\"" + el.id + "\"&gt;: " + tip,
+        "AI-тренер"
+      );
+    }
+  };
+  let aiBtn = document.getElementById("btn-ai-trainer");
+  aiBtn.addEventListener("click", aiTrainer);
+
+
+  document.getElementById("btn-end-session").addEventListener("click", function () {
+    aiBtn.removeEventListener("click", aiTrainer);
+    logCabinet(
+      "Сесію з AI-тренером завершено. Дякуємо за консультацію! Кнопка «Запитати AI-тренера» " +
+      "більше не активна до перезавантаження сторінки.",
+      "сесія"
+    );
+  });
+
+
+  
+
+  
+  document.getElementById("exercise-list").onclick = function (event) {
+    if (event.target.tagName !== "LI") return;      
+    event.target.classList.toggle("selected");      
+  };
+
+
+
+  function logTool(text) {
+    let log = document.getElementById("tools-log");
+    if (!log) return;
+    if (log.querySelector("em")) log.innerHTML = "";
+    let entry = document.createElement("div");
+    entry.className = "tool-entry";
+    entry.innerHTML =
+      "<span class='tool-time'>" + new Date().toLocaleTimeString() + "</span>" + text;
+    log.prepend(entry);
+  }
+
+ 
+  let toolBehaviors = {
+    bmi: function () {
+      let weight = parseFloat(prompt("Введіть вашу вагу (кг):"));
+      let height = parseFloat(prompt("Введіть ваш зріст (см):"));
+      if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+        logTool("⚠ Некоректні дані для розрахунку BMI.");
+        return;
+      }
+      let bmi = (weight / Math.pow(height / 100, 2)).toFixed(1);
+      let category =
+        bmi < 18.5 ? "недостатня вага" :
+        bmi < 25   ? "норма" :
+        bmi < 30   ? "надлишкова вага" : "ожиріння";
+      logTool("🧮 Ваш BMI: <strong>" + bmi + "</strong> (" + category + ").");
+    },
+    nutrition: function () {
+      let tips = [
+        "Білок у кожному прийомі їжі: 1.6–2 г на кг ваги на день.",
+        "Вуглеводи краще споживати до і після тренування.",
+        "5–6 невеликих прийомів їжі ефективніші за 2–3 великих.",
+        "Овочі мають займати половину тарілки на обід та вечерю.",
+        "Уникайте швидких вуглеводів після 18:00.",
+        "Жири теж потрібні: горіхи, авокадо, оливкова олія."
+      ];
+      logTool("🍎 Порада з харчування: " + tips[Math.floor(Math.random() * tips.length)]);
+    },
+    water: function () {
+      logTool(
+        "💧 Нагадування: випивайте близько <strong>2.5 літрів</strong> води щодня. " +
+        "Час випити склянку прямо зараз!"
+      );
+    },
+    count: function () {
+      let all      = document.querySelectorAll("#exercise-list li");
+      let selected = document.querySelectorAll("#exercise-list li.selected");
+      if (selected.length === 0) {
+        logTool(
+          "📊 У списку <strong>" + all.length + "</strong> вправ. " +
+          "Ви ще не обрали жодної — оберіть кілька, щоб скласти план."
+        );
+      } else {
+        logTool(
+          "📊 У списку <strong>" + all.length + "</strong> вправ, " +
+          "до сьогоднішнього плану додано: <strong>" + selected.length + "</strong>. Гарного тренування! 💪"
+        );
+      }
+    },
+    clear: function () {
+      document.getElementById("tools-log").innerHTML =
+        "<em style='color:#888;'>Журнал очищено.</em>";
+    }
+  };
+
+  
+  document.getElementById("tools-menu").addEventListener("click", function (event) {
+    let btn = event.target.closest("button[data-action]");
+    if (!btn) return;                                 
+    let action = btn.dataset.action;                   
+    if (typeof toolBehaviors[action] === "function") {
+      toolBehaviors[action]();                         
+    } else {
+      logTool("⚠ Невідома дія: " + action);
+    }
+  });
 </script>
 </body>
 </html>
