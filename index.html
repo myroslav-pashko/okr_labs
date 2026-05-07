@@ -302,6 +302,178 @@
     font-size: 12px;
     margin-right: 6px;
   }
+
+
+  .interactive-section {
+    background: linear-gradient(135deg, #ffffff, #fff8e8);
+    border: 1px solid #e0c89a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+  .interactive-section h2 { color: #1f3c88; margin-top: 0; }
+  .interactive-section h3 {
+    color: #1f3c88;
+    margin: 20px 0 8px;
+    font-size: 17px;
+    border-bottom: 1px dashed #d8c39a;
+    padding-bottom: 4px;
+  }
+
+
+  .hover-zones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 12px 0;
+    padding: 14px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  .hover-zone {
+    flex: 1 1 140px;
+    min-height: 90px;
+    padding: 14px;
+    text-align: center;
+    font-weight: bold;
+    color: #1f3c88;
+    background-color: #eef4ff;
+    border: 2px solid #c5d3ed;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s, background-color 0.15s, box-shadow 0.15s;
+    user-select: none;
+  }
+  .hover-zone .zone-icon {
+    display: block;
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+  .hover-zone .zone-desc {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    font-weight: normal;
+    margin-top: 4px;
+  }
+
+  .hover-zone.is-hovered {
+    background-color: darkorange;
+    color: white;
+    border-color: #c75000;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 4px 10px rgba(199, 80, 0, 0.25);
+  }
+  .hover-zone.is-hovered .zone-desc {
+    color: #fff3cd;
+  }
+
+  #hover-status {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-left: 4px solid #1f3c88;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 22px;
+  }
+  #hover-status code {
+    background: #f0f0f0;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #b04545;
+  }
+
+
+  .drag-area {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .drag-box {
+    flex: 1 1 260px;
+    min-height: 220px;
+    background: white;
+    border: 2px dashed #c5d3ed;
+    border-radius: 8px;
+    padding: 14px;
+    position: relative;
+    transition: background-color 0.15s, border-color 0.15s;
+  }
+  .drag-box-title {
+    color: #1f3c88;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #c5d3ed;
+  }
+  .drag-box.drop-target {
+    background-color: #fff8dc;
+    border-color: darkorange;
+  }
+
+  .draggable {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 4px;
+    background-color: #eef4ff;
+    border: 2px solid #1f3c88;
+    border-radius: 8px;
+    color: #1f3c88;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: grab;
+    user-select: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .draggable:hover {
+    box-shadow: 0 2px 6px rgba(31, 60, 136, 0.2);
+  }
+  .draggable.dragging {
+    position: fixed;
+    z-index: 9999;
+    cursor: grabbing;
+    opacity: 0.85;
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+  }
+  .draggable[data-type="image"] {
+    padding: 4px;
+    background-color: white;
+  }
+  .draggable[data-type="image"] img {
+    display: block;
+    border-radius: 4px;
+    border: none;
+    padding: 0;
+  }
+
+  #drag-status {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-left: 4px solid darkorange;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 22px;
+  }
+  #drag-status code {
+    background: #f0f0f0;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #b04545;
+  }
 </style>
 </head>
 
@@ -438,6 +610,71 @@
 
   <div id="tools-log" class="tools-log">
     <em style="color:#888;">Тут зʼявлятимуться результати розрахунків та поради…</em>
+  </div>
+</div>
+
+
+
+<div class="interactive-section">
+  <h2>🖱 Інтерактивний майданчик</h2>
+  <p>Спробуйте навести мишу на тренажерні зони, щоб побачити деталі, або перетягніть інвентар у потрібний бокс.</p>
+
+  <h3>1. Навігація по залу </h3>
+  <p>Наведіть курсор на зону — вона підсвітиться.</p>
+
+  <div id="hover-zones" class="hover-zones">
+    <div class="hover-zone" data-zone="Кардіо">
+      <span class="zone-icon">🏃</span>
+      Кардіо-зона
+      <span class="zone-desc">Бігові доріжки, велотренажери</span>
+    </div>
+    <div class="hover-zone" data-zone="Сила">
+      <span class="zone-icon">🏋️</span>
+      Силова зона
+      <span class="zone-desc">Штанги, гантелі, тренажери</span>
+    </div>
+    <div class="hover-zone" data-zone="Розтяжка">
+      <span class="zone-icon">🧘</span>
+      Зона розтяжки
+      <span class="zone-desc">Йога, мобільність, відновлення</span>
+    </div>
+    <div class="hover-zone" data-zone="VIP">
+      <span class="zone-icon">⭐</span>
+      VIP-коучинг
+      <span class="zone-desc">Персональні тренування</span>
+    </div>
+  </div>
+
+  <div id="hover-status">
+    <em style="color:#888;">Наведіть курсор на одну із зон вище…</em>
+  </div>
+
+  <h3>2. Розкладіть інвентар </h3>
+  <p>Затисніть ліву кнопку миші на елементі та перетягніть його у потрібний бокс. Працює і з текстом, і з зображенням.</p>
+
+  <div id="drag-area" class="drag-area">
+    <div class="drag-box" data-box="Інвентар">
+      <div class="drag-box-title">📦 Загальний інвентар</div>
+      <div class="draggable" data-type="text">🏋️ Гантелі 10 кг</div>
+      <div class="draggable" data-type="text">🟢 Фітбол</div>
+      <div class="draggable" data-type="text">🟦 Килимок для йоги</div>
+      <div class="draggable" data-type="text">🔗 Скакалка</div>
+      <div class="draggable" data-type="image" title="Перетягніть мене">
+        <img src="images/gym.jpg" width="80" height="60" alt="Gym">
+      </div>
+    </div>
+
+    <div class="drag-box" data-box="Силова">
+      <div class="drag-box-title">💪 Силова зона</div>
+    </div>
+
+    <div class="drag-box" data-box="Кардіо">
+      <div class="drag-box-title">🏃 Кардіо-зона</div>
+    </div>
+  </div>
+
+  <div id="drag-status">
+    <em style="color:#888;">Затисніть мишу на будь-якому елементі вище та перетягніть його…</em>
   </div>
 </div>
 
@@ -775,7 +1012,10 @@
     event.target.classList.toggle("selected");      
   };
 
-
+  document.getElementById("exercise-list").onclick = function (event) {
+    if (event.target.tagName !== "LI") return;      
+    event.target.classList.toggle("selected");      
+  };
 
   function logTool(text) {
     let log = document.getElementById("tools-log");
@@ -852,6 +1092,179 @@
     } else {
       logTool("⚠ Невідома дія: " + action);
     }
+  });
+
+
+
+
+  let hoverZonesContainer = document.getElementById("hover-zones");
+  let hoverStatus         = document.getElementById("hover-status");
+
+ 
+  function getHoverZone(node) {
+    if (!node || node === hoverZonesContainer) return null;
+    return node.closest ? node.closest(".hover-zone") : null;
+  }
+
+  
+  function describeRelated(related) {
+    if (!related) return "<em>поза вікном браузера</em>";
+    let zone = getHoverZone(related);
+    if (zone) return "зона <code>" + zone.dataset.zone + "</code>";
+    if (related === hoverZonesContainer || hoverZonesContainer.contains(related)) {
+      return "<em>порожній простір контейнера</em>";
+    }
+    return "<code>&lt;" + related.tagName.toLowerCase() + "&gt;</code> поза майданчиком";
+  }
+
+  
+  hoverZonesContainer.addEventListener("mouseover", function (event) {
+    let zone        = getHoverZone(event.target);
+    let fromZone    = getHoverZone(event.relatedTarget);
+    if (!zone || zone === fromZone) return;
+
+    zone.classList.add("is-hovered");
+    hoverStatus.innerHTML =
+      "👉 <strong>Заходимо</strong> у зону <code>" + zone.dataset.zone + "</code>. " ;
+  });
+
+ 
+  hoverZonesContainer.addEventListener("mouseout", function (event) {
+    let zone     = getHoverZone(event.target);
+    let toZone   = getHoverZone(event.relatedTarget);
+    if (!zone || zone === toZone) return;
+
+    zone.classList.remove("is-hovered");
+    hoverStatus.innerHTML =
+      "👋 <strong>Виходимо</strong> із зони <code>" + zone.dataset.zone + "</code>. " ;
+  });
+
+  
+
+  let dragArea   = document.getElementById("drag-area");
+  let dragStatus = document.getElementById("drag-status");
+
+  
+  let dragState = {
+    element:    null,   
+    placeholder:null,   
+    offsetX:    0,
+    offsetY:    0,
+    startBox:   null,
+    currentDropTarget: null
+  };
+
+  
+  dragArea.addEventListener("mousedown", function (event) {
+    
+    let item = event.target.closest(".draggable");
+    if (!item) return;
+
+    event.preventDefault(); 
+
+    let rect = item.getBoundingClientRect();
+    dragState.element  = item;
+    dragState.offsetX  = event.clientX - rect.left;
+    dragState.offsetY  = event.clientY - rect.top;
+    dragState.startBox = item.closest(".drag-box");
+
+    
+    item.style.width  = rect.width  + "px";
+    item.style.height = rect.height + "px";
+
+    
+    let placeholder = document.createElement("span");
+    placeholder.style.cssText =
+      "display:inline-block;width:" + rect.width + "px;height:" + rect.height +
+      "px;margin:4px;vertical-align:top;";
+    item.parentNode.insertBefore(placeholder, item);
+    dragState.placeholder = placeholder;
+
+    
+    item.classList.add("dragging");
+    moveAt(event.clientX, event.clientY);
+
+    dragStatus.innerHTML =
+      "✊ <strong></strong>: підняли <code>" +
+      (item.dataset.type === "image" ? "зображення" : item.textContent.trim()) +
+      "</code> із бокса <code>" + dragState.startBox.dataset.box + "</code>.";
+  });
+
+  
+  document.addEventListener("mousemove", function (event) {
+    if (!dragState.element) return;
+
+    moveAt(event.clientX, event.clientY);
+
+    
+    dragState.element.hidden = true;
+    let below = document.elementFromPoint(event.clientX, event.clientY);
+    dragState.element.hidden = false;
+
+    let dropBox = below ? below.closest(".drag-box") : null;
+
+    if (dropBox !== dragState.currentDropTarget) {
+      if (dragState.currentDropTarget) {
+        dragState.currentDropTarget.classList.remove("drop-target");
+      }
+      if (dropBox) {
+        dropBox.classList.add("drop-target");
+      }
+      dragState.currentDropTarget = dropBox;
+    }
+  });
+
+  
+  document.addEventListener("mouseup", function (event) {
+    if (!dragState.element) return;
+
+    let item       = dragState.element;
+    let dropBox    = dragState.currentDropTarget;
+    let label      = item.dataset.type === "image" ? "зображення" : item.textContent.trim();
+
+    if (dropBox) {
+      dropBox.appendChild(item);
+      dragStatus.innerHTML =
+        " <strong></strong>: <code>" + label +
+        "</code> переміщено у бокс <code>" + dropBox.dataset.box + "</code> " +
+        "(із <code>" + dragState.startBox.dataset.box + "</code>).";
+    } else {
+      
+      dragState.placeholder.parentNode.insertBefore(item, dragState.placeholder);
+      dragStatus.innerHTML =
+        "↩ <strong></strong>: <code>" + label +
+        "</code> скинуто поза боксом — повернуто на місце.";
+    }
+
+    
+    dragState.placeholder.remove();
+    item.classList.remove("dragging");
+    item.style.left   = "";
+    item.style.top    = "";
+    item.style.width  = "";
+    item.style.height = "";
+
+    if (dragState.currentDropTarget) {
+      dragState.currentDropTarget.classList.remove("drop-target");
+    }
+
+    
+    dragState.element  = null;
+    dragState.placeholder = null;
+    dragState.startBox = null;
+    dragState.currentDropTarget = null;
+  });
+
+  
+  function moveAt(clientX, clientY) {
+    if (!dragState.element) return;
+    dragState.element.style.left = (clientX - dragState.offsetX) + "px";
+    dragState.element.style.top  = (clientY - dragState.offsetY) + "px";
+  }
+
+  
+  dragArea.addEventListener("dragstart", function (event) {
+    if (event.target.closest(".draggable")) event.preventDefault();
   });
 </script>
 </body>
